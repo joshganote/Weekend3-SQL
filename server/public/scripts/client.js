@@ -52,11 +52,21 @@ function finishedTask(event) {
     $(this).parent().parent().toggleClass('green');
 };
 
+// As it is right now it will delete an entry, but without being able to 
+// add the 'id' in there I'm afraid to move forward with making a DELETE ajax call
 function deleteTask (event) {
     $(this).parent().parent().remove();
     
 }
 
+// I want to click the 'finished' button and update my status
+// on server to say finished as well
+function updateStatus(){}
+
+// I tried adding a '<div> tag to the table data and tucking it inside there
+// But I couldn't get it to work.
+// If I keep it tucked into the <td> tag it works. I'm not confident it will 
+// carry over to the server side
 function render(tasks) {
     $('.container').empty();
 
@@ -64,7 +74,7 @@ function render(tasks) {
         console.log(task)
         $('.container').append(`
          <tr>
-           <div >
+           <div>
            <td>${task.task}<br><button class="finished-btn">Finished</button><button class="delete-btn" data-id="${task.id}">Delete</button></td>
            <td>${task.tools}</td>
            <td>${task.complete}</td>
