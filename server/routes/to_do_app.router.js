@@ -46,8 +46,20 @@ router.put('/:task', (req,res) => {
             res.sendStatus(500);
         })
 });
-//Delete Router
-router.delete('/', (req,res) => {});
+//Doesn't accept object data use params
+router.delete('/:id', (req,res) => {
+    console.log(req.params.id);
+    const taskID = req.params.id;
+    const queryString = `DELETE FROM "weekend-to-do-app" WHERE "id" = ${taskID};`;
+
+    pool.query(queryString)
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+        })
+});
 
 
 module.exports = router;

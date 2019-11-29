@@ -1,7 +1,8 @@
 CREATE TABLE "weekend-to-do-app"(
+	"id" SERIAL PRIMARY KEY,
 	"task" varchar(250),
 	"tools" varchar(100),
-	"complete" varchar(100),
+	"complete" varchar(100) date,
 	"status" varchar(100)
 );
 -- INSERT INTO "weekend-to-do-app"(task, tools, complete, status)

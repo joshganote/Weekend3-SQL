@@ -55,9 +55,19 @@ function finishedTask(event) {
 // As it is right now it will delete an entry, but without being able to 
 // add the 'id' in there I'm afraid to move forward with making a DELETE ajax call
 function deleteTask (event) {
-    $(this).parent().parent().remove();
-    
-}
+    const idNumber = $(this).data('id');
+
+    $.ajax({
+        method: 'DELETE',
+        url: '/api/to-do-app/' + idNumber
+    })
+    .then((response) => {
+        getTask();
+    })
+    .catch((response) => {
+        console.warn(response);
+    })
+};
 
 // I want to click the 'finished' button and update my status
 // on server to say finished as well
@@ -73,13 +83,16 @@ function render(tasks) {
     for(let task of tasks){
         console.log(task)
         $('.container').append(`
-         <tr>
-           <div>
-           <td>${task.task}<br><button class="finished-btn">Finished</button><button class="delete-btn" data-id="${task.id}">Delete</button></td>
-           <td>${task.tools}</td>
-           <td>${task.complete}</td>
-           </div>
-         </tr>
-       `)
+        <tr>
+          <div>
+          <td>${task.task}</td>
+          <td>${task.tools}</td>
+          <td>${task.complete}</td>
+          <td><button class="finished-btn" data-id="${task.id}">Finished</button></td>
+          <td><button class="delete-btn" data-id="${task.id}">Delete</button></td>
+          </div>
+        </tr>
+
+      `)
     }
 };
