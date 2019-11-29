@@ -17,9 +17,10 @@ router.get('/', (req, res) => {
 
 //Post router
 router.post('/', (req,res) => {
-    const newToDo = req.body;
+    const newTaskObject = req.body;
+    console.log(newTaskObject);
     const queryString = `INSERT INTO "weekend-to-do-app" ("task", "tools", "complete")
-    VALUES('${newToDo.task}', '${newToDo.tools}', '${newToDo.complete}');`;
+    VALUES('${newTaskObject.task}', '${newTaskObject.tools}', '${newTaskObject.complete}');`;
 
     pool.query(queryString)
     .then((response) => {
@@ -31,9 +32,22 @@ router.post('/', (req,res) => {
 });
 
 //Put Router
+router.put('/:task', (req,res) => {
+    const task = req.params.task;
+    const complete = req.body.complete
 
+    let queryString = `UPDATE "weekend-to-do-app" SET "task"=${complete} WHERE "task" = $1;`;
+    console.log(queryString);
+    pool.query(queryString, [task])
+        .then((response) => {
+            res.sendStatus(201);
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+        })
+});
 //Delete Router
-
+router.delete('/', (req,res) => {});
 
 
 module.exports = router;

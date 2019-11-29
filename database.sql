@@ -1,7 +1,8 @@
 CREATE TABLE "weekend-to-do-app"(
 	"task" varchar(250),
 	"tools" varchar(100),
-	"complete" varchar(100)
+	"complete" varchar(100),
+	"status" varchar(100)
 );
 -- INSERT INTO "weekend-to-do-app"(task, tools, complete)
 -- VALUES('Learn HTML, CSS, and JavaScript', 'VSC, and Prime Instructors', '6 weeks'),
