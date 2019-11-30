@@ -16,7 +16,6 @@ function onSubmitForm(event) {
         complete: $('#complete').val(),
     };
     postTask(newTaskObject);
-    console.log(newTaskObject);
 };
 
 function postTask(newTaskObject) {
@@ -26,7 +25,7 @@ function postTask(newTaskObject) {
         data: newTaskObject
     })
     .then ((response) => {
-        console.log('POST');
+        console.log('client POST');
         getTask();
     })
     .catch ((err) => {
@@ -40,7 +39,7 @@ function getTask() {
         url: 'api/to-do-app'
     })
     .then ((response) => {
-        console.log('GET');
+        console.log('client GET');
         render(response);
     })
     .catch ((err) => {
@@ -48,12 +47,6 @@ function getTask() {
     })
 };
 
-function finishedTask(event) {
-    $(this).parent().parent().toggleClass('green');
-};
-
-// As it is right now it will delete an entry, but without being able to 
-// add the 'id' in there I'm afraid to move forward with making a DELETE ajax call
 function deleteTask (event) {
     const idNumber = $(this).data('id');
 
@@ -62,6 +55,7 @@ function deleteTask (event) {
         url: '/api/to-do-app/' + idNumber
     })
     .then((response) => {
+        console.log('client DELETE');
         getTask();
     })
     .catch((response) => {
@@ -69,19 +63,32 @@ function deleteTask (event) {
     })
 };
 
-// I want to click the 'finished' button and update my status
-// on server to say finished as well
-function updateStatus(){}
+function finishedTask(event) {
+    updateTask('Finished', $(this).parent().parent().toggleClass('green').data('id'));
+    //$(this).parent().parent().toggleClass('green');
+};
 
-// I tried adding a '<div> tag to the table data and tucking it inside there
-// But I couldn't get it to work.
-// If I keep it tucked into the <td> tag it works. I'm not confident it will 
-// carry over to the server side
+function updateTask(statusChange, id){
+    $.ajax({
+        method: 'PUT',
+        url: '/api/to-do-app/' + id,
+        data: {
+            statusChange: statusChange
+        }
+    })
+    .then((response) => {
+        console.log('client PUT');
+        getTask();
+    })
+    .catch((err) => {
+        console.warn(err);
+    })
+};
+
 function render(tasks) {
     $('.container').empty();
 
     for(let task of tasks){
-        console.log(task)
         $('.container').append(`
         <tr>
           <div>
@@ -96,3 +103,19 @@ function render(tasks) {
       `)
     }
 };
+
+// -------Extra Stuff--------
+// function newStatus(){
+//     updateTask('finished')
+// };
+//updateTask('Finished', $(this).data('id'));
+    // let id = $(this).data('id');
+    // let val = 'Finished';
+    // const status =$(this).data('status');
+
+    // if( status == 'Finished'){
+    //     val = 'no';
+    // } else {
+    //     val = 'yes';
+    // }
+    // putTask(val, id);
