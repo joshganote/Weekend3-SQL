@@ -1,3 +1,41 @@
+body {
+    background: rgba(255, 169, 77, 1);
+}
+
+#header {
+    text-align: center;
+    color: whitesmoke;
+    margin: 0px;
+    font-family: 'Baskervville', serif;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+#to-do-list {
+    text-align: center;
+    background: rgba(77, 173, 247, .7);
+    margin-left: 195px;
+    margin-right: 195px;
+    padding: 20px;
+    border: 2px solid black;
+    font-family: 'Baskervville', serif;
+    font-size: 25px;
+}
+
+#task-list {
+    width: 73%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 232, 204, .7);
+    border: 2px solid black;
+    font-family: 'Baskervville', serif;
+    font-size: 20px;
+}
+
+#header-list {
+}
+
 .green {
-    background: green;
+    background: rgba(105, 219, 124, 1);
 }

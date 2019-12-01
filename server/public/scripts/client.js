@@ -6,7 +6,7 @@ function init() {
     $('#addToList').on('submit', onSubmitForm);
     $('.container').on('click', '.finished-btn', finishedTask);
     $('.container').on('click', '.delete-btn', deleteTask);
-}
+};
 
 function onSubmitForm(event) {
     event.preventDefault();
@@ -63,9 +63,13 @@ function deleteTask (event) {
     })
 };
 
+// Kinda stuck on my logic for this one. If I comment out the top line
+// of this function the background of the task changes to green and stays
+// that way, but doesn't update the server. If I leave it like this it just 
+// flickers on the page. 
 function finishedTask(event) {
-    updateTask('Finished', $(this).parent().parent().toggleClass('green').data('id'));
-    //$(this).parent().parent().toggleClass('green');
+    updateTask('Finished', $(this).data('id'));
+    $(this).parent().parent().toggleClass('green');
 };
 
 function updateTask(statusChange, id){
@@ -83,9 +87,10 @@ function updateTask(statusChange, id){
     .catch((err) => {
         console.warn(err);
     })
+    
 };
 
-function render(tasks) {
+function render(tasks,) {
     $('.container').empty();
 
     for(let task of tasks){
