@@ -1,9 +1,7 @@
-# Project Name
+# SQL Weekend Task Manager
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+As I continue to advance in my understanding of JavaScript, I wanted to add a database to hold information entered by the user. In this case, the user is myself, and I'm using it to keep track of my extracurricular activities outside of class. In order to complete this I will be creating a database through SQL which connects to a router. This router can then gather stored information on page load, receive new information, provide updates on completed tasks, and delete entries from the database. I will provide a "finished" button that will highlight the task in green signifying completion, as well as a "delete" button if I choose to clear a task. My server will then help direct traffic coming to and from the database, and I will also try and style a simple but elegant user interface. The tools needed to complete this are Postico, Postman, Node modules, JavaScript, HTML, and CSS. 
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/github-finalization-assignment).
+Upon arriving to my page you will greeted with the question, What would you like to do? A simple question, but one not always easily answered. If you feel you have little time, pressure to decide on the most efficient tasks can cause some anxiety and decision fatigue for some. Deciding on what you want to accomplish can be simple, but adding a realistic time frame, and making a list of what you need can help take some of the anxiety away. The goal of this project is to help take the crossed lines of communication from what you want to do, and physically display them on page. This will then force you to organize them one at a time on their own timeline as opposed to every task riding the same brainwave all the time. In return, this should help calm the chaos machine between our ears. 
